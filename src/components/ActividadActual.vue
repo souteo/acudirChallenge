@@ -5,23 +5,39 @@
       <div class="col-md-6 border h5">Actividad</div>
       <div class="col-md-3 border h5">Participantes</div>
       <div class="col-md-3 border h5">Tipo</div>
-      <div class="col-md-6 border">{{ titulo }}</div>
-      <div class="col-md-3 border">{{ participantes }}</div>
-      <div class="col-md-3 border">{{ tipo }}</div>
+      <div class="col-md-6 border">{{ tarea.titulo }}</div>
+      <div class="col-md-3 border">{{ tarea.participantes }}</div>
+      <div class="col-md-3 border">{{ tarea.tipo }}</div>
     </div>
-    <button class="btn w-100 border">Cargar nueva tarea</button>
+    <button @click="nuevaTarea" class="btn btn-secondary w-100 border mt-5">Cargar nueva tarea</button>
   </div>
 </template>
 
 <script lang="ts">
+import axios from 'axios';
 export default {
   data() {
     return {
-      titulo: "Go for a run",
-      tipo: "recreational",
-      participantes: 1,
-    };
+      tarea: {}
+    }
   },
+  methods: {
+    nuevaTarea(){
+      axios.get('https://www.boredapi.com/api/activity').then((response) => {
+      if(response.data){
+        console.log(response.data);
+        this.tarea = {
+          titulo: response.data.activity,
+          participantes: response.data.participants,
+          tipo: response.data.type
+        };
+      }
+    });
+    }
+  },
+  mounted() {
+    this.nuevaTarea();
+  }
 };
 </script>
 
@@ -30,5 +46,6 @@ export default {
   width: 90%;
   padding: 20px;
   margin: 50px auto;
+  min-height: 550px;
 }
 </style>

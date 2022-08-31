@@ -4,14 +4,16 @@ import ActividadesHistorial from "./components/ActividadesHistorial.vue";
 </script>
 
 <template>
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-6">
-      <ActividadActual> </ActividadActual>
+    <div class="col">
+      <ActividadActual class="col"> </ActividadActual>
     </div>
     <div class="col">
-      <ActividadesHistorial> </ActividadesHistorial>
+      <ActividadesHistorial class="col"> </ActividadesHistorial>
     </div>
   </div>
+</div>
 </template>
 
 <style scoped></style>
