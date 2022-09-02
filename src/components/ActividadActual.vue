@@ -1,7 +1,7 @@
 <template>
   <div class="bg-light borderRadius">
     <div>
-      <h1>Actividad aleatoria</h1>
+      <h1 class="border-bottom mb-3">Actividad aleatoria</h1>
     </div>
     <div class="row w-100 m-0">
       <actividad></actividad>

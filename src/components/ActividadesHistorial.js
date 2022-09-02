@@ -8,7 +8,7 @@ export default function ActividadesHistorial(props) {
     h(
       "div",
       { class: "bg-light borderRadius" },
-      h("h1", "Historial de actividades")
+      h("h1", { class: "border-bottom mb-3" }, "Historial de actividades")
     ),
     h(
       "div",
