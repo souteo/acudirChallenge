@@ -22,44 +22,12 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Actividad from "./Actividad.js";
 export default {
   data() {
     return {
-      lista: [
-        {
-          titulo: "Listen to a new podcast",
-          tipo: "relaxation",
-          participantes: 1,
-        },
-        {
-          titulo:
-            "Learn about a distributed version control system such as Git",
-          tipo: "education",
-          participantes: 1,
-        },
-        {
-          titulo: "Look at pictures and videos of cute animals",
-          tipo: "relaxation",
-          participantes: 1,
-        },
-        {
-          titulo: "Invite some friends over for a game night",
-          tipo: "social",
-          participantes: 4,
-        },
-        {
-          titulo: "Invite some friends over for a game night",
-          tipo: "social",
-          participantes: 4,
-        },
-        {
-          titulo: "Invite some friends over for a game night",
-          tipo: "social",
-          participantes: 4,
-        },
-      ],
+      historial: [],
     };
   },
   components: {

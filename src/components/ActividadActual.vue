@@ -8,7 +8,10 @@
       <actividad :actividad="actividadActual"></actividad>
     </div>
     <button
-      @click="actualizarActividad"
+      @click="
+        agregarActividadAlHistorial();
+        actualizarActividad();
+      "
       class="btn btn-success position-absolute bottom-0 start-0 borderRadius w-100"
     >
       Cargar nueva actividad
@@ -24,7 +27,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import axios from "axios";
 import Actividad from "./Actividad.js";
 export default {
@@ -49,10 +52,13 @@ export default {
         });
     },
     actualizarActividad() {
-      this.nuevaActividad().then((data) => {
-        this.actividadActual = data;
-        localStorage.setItem("actividadActual", JSON.stringify(data));
+      this.nuevaActividad().then((nuevaActividad) => {
+        this.actividadActual = nuevaActividad;
+        localStorage.setItem("actividadActual", JSON.stringify(nuevaActividad));
       });
+    },
+    agregarActividadAlHistorial() {
+      this.$emit("actualizarHistorial", this.actividadActual);
     },
   },
   mounted() {
