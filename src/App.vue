@@ -16,12 +16,11 @@ export default {
       );
     },
     getHistorial() {
-      const auxHistorial = JSON.parse(localStorage.getItem("historialActividades"));
-      return auxHistorial || []
+      const auxHistorial = JSON.parse(
+        localStorage.getItem("historialActividades")
+      );
+      return auxHistorial || [];
     },
-    limpiarHistorial() {
-      this.setHistorial([]);
-    }
   },
   components: {
     ActividadActual: ActividadActual,
@@ -52,14 +51,12 @@ export default {
 </template>
 
 <style scoped>
+@import "./assets/base.css";
 .contenedor {
   width: 95%;
   padding: 10px;
   margin: 50px auto;
   height: 550px;
   position: relative;
-}
-.borderRadius {
-  border-radius: 0 0 8px 8px;
 }
 </style>

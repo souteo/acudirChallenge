@@ -12,13 +12,13 @@
         agregarActividadAlHistorial();
         actualizarActividad();
       "
-      :disabled="this.isComponentLoading()"
+      :disabled="this.cargando()"
       class="btn btn-success position-absolute bottom-0 start-0 borderRadius w-100"
     >
       Cargar nueva actividad
     </button>
     <div
-      v-if="this.isComponentLoading()"
+      v-if="this.cargando()"
       class="d-flex justify-content-center my-2"
     >
       <div class="spinner-border" role="status">
@@ -61,12 +61,11 @@ export default {
     agregarActividadAlHistorial() {
       this.$emit("actualizarHistorial", this.actividadActual);
     },
-    isComponentLoading() {
+    cargando() {
       return Object.keys(this.actividadActual).length === 0
     }
   },
   mounted() {
-    // localStorage.clear();
     const auxAct = localStorage.getItem("actividadActual");
     if (auxAct) {
       this.actividadActual = JSON.parse(auxAct);
@@ -81,7 +80,5 @@ export default {
 </script>
 
 <style scoped>
-.borderRadius {
-  border-radius: 0 0 8px 8px;
-}
+@import "../assets/base.css";
 </style>
