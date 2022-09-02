@@ -1,20 +1,29 @@
 <template>
-  <div class="bg-light contenedor">
-    <h1>Historial de actividades</h1>
-    <div class="row">
-      <div class="col-md-6 border h5">Actividad</div>
-      <div class="col-md-3 border h5">Participantes</div>
-      <div class="col-md-3 border h5">Tipo</div>
+  <div class="bg-light contenedor borderRadius">
+    <div>
+      <h1>Historial de actividades</h1>
     </div>
-    <div class="row" v-for="item in lista">
-      <div class="col-md-6 border">{{ item.titulo }}</div>
-      <div class="col-md-3 border">{{ item.participantes }}</div>
-      <div class="col-md-3 border">{{ item.tipo }}</div>
+    <div class="actividadContainer m-0 overflow-auto row w-100">
+      <div class="position-sticky top-0 bg-light p-0 m-0 row">
+        <actividad></actividad>
+      </div>
+      <actividad
+        v-for="item in lista"
+        :actividad="item"
+        :key="item.key"
+      ></actividad>
     </div>
+    <button
+      @click="nuevaActividad"
+      class="btn btn-success position-absolute bottom-0 start-0 w-100 borderRadius"
+    >
+      Limpiar historial de actividades
+    </button>
   </div>
 </template>
 
 <script lang="ts">
+import Actividad from "./Actividad.js";
 export default {
   data() {
     return {
@@ -36,14 +45,14 @@ export default {
           participantes: 1,
         },
         {
-          titulo: "Have a paper airplane contest with some friends",
+          titulo: "Invite some friends over for a game night",
           tipo: "social",
           participantes: 4,
         },
         {
-          titulo: "Learn to write with your nondominant hand",
-          tipo: "recreational",
-          participantes: 1,
+          titulo: "Invite some friends over for a game night",
+          tipo: "social",
+          participantes: 4,
         },
         {
           titulo: "Invite some friends over for a game night",
@@ -53,14 +62,24 @@ export default {
       ],
     };
   },
+  components: {
+    actividad: Actividad,
+  },
 };
 </script>
 
 <style scoped>
 .contenedor {
   width: 90%;
-  padding: 20px;
+  padding: 10px;
   margin: 50px auto;
-  min-height: 550px;
+  height: 550px;
+  position: relative;
+}
+.borderRadius {
+  border-radius: 0 0 8px 8px;
+}
+.actividadContainer {
+  max-height: 380px;
 }
 </style>
