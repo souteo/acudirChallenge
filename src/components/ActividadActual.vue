@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-light contenedor borderRadius">
+  <div class="bg-light borderRadius">
     <div>
       <h1>Actividad aleatoria</h1>
     </div>
@@ -12,12 +12,13 @@
         agregarActividadAlHistorial();
         actualizarActividad();
       "
+      :disabled="this.isComponentLoading()"
       class="btn btn-success position-absolute bottom-0 start-0 borderRadius w-100"
     >
       Cargar nueva actividad
     </button>
     <div
-      v-if="Object.keys(this.actividadActual).length === 0"
+      v-if="this.isComponentLoading()"
       class="d-flex justify-content-center my-2"
     >
       <div class="spinner-border" role="status">
@@ -33,7 +34,7 @@ import Actividad from "./Actividad.js";
 export default {
   data() {
     return {
-      actividadActual: {},
+      actividadActual: {}
     };
   },
   methods: {
@@ -60,6 +61,9 @@ export default {
     agregarActividadAlHistorial() {
       this.$emit("actualizarHistorial", this.actividadActual);
     },
+    isComponentLoading() {
+      return Object.keys(this.actividadActual).length === 0
+    }
   },
   mounted() {
     // localStorage.clear();
@@ -77,13 +81,6 @@ export default {
 </script>
 
 <style scoped>
-.contenedor {
-  position: relative;
-  width: 90%;
-  padding: 10px;
-  margin: 50px auto;
-  min-height: 550px;
-}
 .borderRadius {
   border-radius: 0 0 8px 8px;
 }

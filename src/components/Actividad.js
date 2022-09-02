@@ -1,7 +1,7 @@
 import { h } from "vue";
 
 export default function Actividad(props) {
-  const actividad = props.actividad;
+  const actividad = props && props.actividad;
   return (
     (actividad && [
       h("div", { class: "col-md-6 border" }, actividad.titulo),

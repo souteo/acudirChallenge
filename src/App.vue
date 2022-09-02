@@ -1,17 +1,27 @@
 <script>
 import ActividadActual from "./components/ActividadActual.vue";
-import ActividadesHistorial from "./components/ActividadesHistorial.vue";
+import ActividadesHistorial from "./components/ActividadesHistorial.js";
 export default {
   data() {
     return {
-      historial: [],
+      historial: this.getHistorial(),
     };
   },
   methods: {
-    getActividad(actividad) {
+    setHistorial(actividad) {
       this.historial.push(actividad);
-      localStorage.setItem("historialActividades", JSON.stringify(this.historial));
+      localStorage.setItem(
+        "historialActividades",
+        JSON.stringify(this.historial)
+      );
     },
+    getHistorial() {
+      const auxHistorial = JSON.parse(localStorage.getItem("historialActividades"));
+      return auxHistorial || []
+    },
+    limpiarHistorial() {
+      this.setHistorial([]);
+    }
   },
   components: {
     ActividadActual: ActividadActual,
@@ -24,14 +34,32 @@ export default {
   <div class="container-fluid">
     <div class="row">
       <div class="col">
-        <ActividadActual @actualizarHistorial="getActividad" class="col">
+        <ActividadActual
+          class="contenedor borderRadius col"
+          @actualizarHistorial="setHistorial"
+        >
         </ActividadActual>
       </div>
       <div class="col">
-        <ActividadesHistorial class="col"> </ActividadesHistorial>
+        <ActividadesHistorial
+          :historial="this.historial"
+          class="contenedor borderRadius col"
+        >
+        </ActividadesHistorial>
       </div>
     </div>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.contenedor {
+  width: 95%;
+  padding: 10px;
+  margin: 50px auto;
+  height: 550px;
+  position: relative;
+}
+.borderRadius {
+  border-radius: 0 0 8px 8px;
+}
+</style>
